@@ -8,6 +8,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-commentary'
+Plug 'nvim-lua/completion-nvim'
 call plug#end()
 
 if has("nvim")

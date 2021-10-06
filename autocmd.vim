@@ -20,6 +20,9 @@ function! s:setupWrapping()
   set nolist
 endfunction
 
+
+autocmd BufEnter * lua require'completion'.on_attach()
+
 " Only do this part when compiled with support for autocommands {{{
 if has("autocmd")
     " Enable file type detection
