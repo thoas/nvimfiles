@@ -76,6 +76,7 @@ Leader is `,`.
 | `,w` | Save |
 | `,f` | Format the file (normal) or selected lines (visual) |
 | `Ctrl-w` | Close buffer |
+| `Ctrl-q` | Close the file's window (`:q`) |
 | `Ctrl-h/j/k/l` | Move between windows |
 | `←` / `→` | Previous / next tab |
 | `↑` / `↓` | Previous / next buffer |
@@ -93,7 +94,7 @@ Leader is `,`.
 | `s` / `i` / `t` (in tree) | Open in vertical split / horizontal split / new tab |
 | `,p` / `,g` / `,b` | Find files / live grep / buffers |
 
-When closing a window (`:q`, `Ctrl-w`) leaves only the tree in a tab, the tab closes too, or nvim quits if it was the last tab.
+When closing a window (`:q`, `Ctrl-q`, `Ctrl-w`) leaves only the tree in a tab, the tab closes too, or nvim quits if it was the last tab.
 
 ### LSP
 
