@@ -21,7 +21,8 @@ vim.cmd.colorscheme("molokai")
 require("nvim-tree").setup({
   view = { width = 35 },
   renderer = { group_empty = true },
-  filters = { dotfiles = false, custom = { "^.git$" } },
+  -- .venv is usually gitignored, which nvim-tree hides by default
+  filters = { dotfiles = false, custom = { "^.git$" }, exclude = { ".venv" } },
   update_focused_file = { enable = true },
   -- Open/split in the last used window instead of asking which one (NERDTree-like);
   -- the picker's letters were hidden behind lualine anyway
