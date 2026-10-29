@@ -22,6 +22,7 @@ Needs `git` and, for the language servers, `go` (gopls) and `npm` (pyright, ts_l
 | File tree | [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua) |
 | Fuzzy finder | [Telescope](https://github.com/nvim-telescope/telescope.nvim) |
 | Completion | [blink.cmp](https://github.com/saghen/blink.cmp) |
+| Auto-close brackets and quotes | [nvim-autopairs](https://github.com/windwp/nvim-autopairs) |
 | Language servers | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), installed by [Mason](https://github.com/mason-org/mason.nvim) |
 | Status line / git | [lualine](https://github.com/nvim-lualine/lualine.nvim), [gitsigns](https://github.com/lewis6991/gitsigns.nvim) |
 | Color scheme | molokai (`colors/molokai.vim`) |

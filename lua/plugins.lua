@@ -10,6 +10,7 @@ vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/mason-org/mason.nvim",
   "https://github.com/mason-org/mason-lspconfig.nvim",
+  "https://github.com/windwp/nvim-autopairs",
   -- Pinned to release tags so the prebuilt fuzzy matcher can be downloaded
   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 }, { confirm = false })
@@ -38,6 +39,10 @@ require("nvim-tree").setup({
   end,
 })
 
+-- Like jiangmiao/auto-pairs; set up before blink.cmp so its <CR> falls back to
+-- autopairs (splitting {|} onto separate lines) when the menu is closed
+require("nvim-autopairs").setup({})
+
 require("blink.cmp").setup({
   keymap = {
     preset = "enter",
@@ -54,6 +59,8 @@ require("blink.cmp").setup({
     },
   },
   completion = {
+    -- Accepting a function adds its parentheses
+    accept = { auto_brackets = { enabled = true } },
     documentation = { auto_show = true, auto_show_delay_ms = 300 },
     list = { selection = { preselect = false, auto_insert = false } },
   },
