@@ -93,6 +93,8 @@ Leader is `,`.
 | `s` / `i` / `t` (in tree) | Open in vertical split / horizontal split / new tab |
 | `,p` / `,g` / `,b` | Find files / live grep / buffers |
 
+When closing a window (`:q`, `Ctrl-w`) leaves only the tree in a tab, the tab closes too, or nvim quits if it was the last tab.
+
 ### LSP
 
 | Keys | Action |

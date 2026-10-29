@@ -40,6 +40,21 @@ require("nvim-tree").setup({
   end,
 })
 
+-- When closing a window (:q, Ctrl-w) leaves only the tree in the tab, close
+-- the tab too, or quit if it was the last one
+vim.api.nvim_create_autocmd("WinClosed", {
+  callback = function()
+    vim.schedule(function()
+      for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+        local is_float = vim.api.nvim_win_get_config(win).relative ~= ""
+        if not is_float and vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "NvimTree" then return end
+      end
+      -- Fails harmlessly (and keeps the tree) if quitting would lose unsaved changes
+      pcall(vim.cmd, vim.fn.tabpagenr("$") > 1 and "tabclose" or "quit")
+    end)
+  end,
+})
+
 -- Like jiangmiao/auto-pairs; set up before blink.cmp so its <CR> falls back to
 -- autopairs (splitting {|} onto separate lines) when the menu is closed
 require("nvim-autopairs").setup({})
