@@ -72,7 +72,7 @@ Leader is `,`.
 | `F9` or `,e` | Toggle the tree |
 | `,E` | Reveal the current file in the tree |
 | `s` / `i` / `t` (in tree) | Open in vertical split / horizontal split / new tab |
-| `,ff` / `,fg` / `,fb` | Find files / live grep / buffers |
+| `,p` / `,g` / `,b` | Find files / live grep / buffers |
 
 ### LSP
 

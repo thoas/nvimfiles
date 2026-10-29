@@ -47,10 +47,10 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file tree" })
 map({ "n", "i" }, "<F9>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file tree" })
 map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "Reveal file in tree" })
 
--- Fuzzy finding
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Grep" })
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Buffers" })
+-- Fuzzy finding (kept off <leader>f so formatting doesn't wait for a second key)
+map("n", "<leader>p", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
+map("n", "<leader>g", "<cmd>Telescope live_grep<CR>", { desc = "Grep" })
+map("n", "<leader>b", "<cmd>Telescope buffers<CR>", { desc = "Buffers" })
 
 -- Diagnostics
 map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Line diagnostics" })
