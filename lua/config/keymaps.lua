@@ -38,13 +38,13 @@ map("n", "<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<Up>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 map("n", "<Down>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 
--- Cmd + j/k/4/6/0 move by screen (wrapped) lines, from the old MacVim config.
--- Needs a terminal that sends Cmd to Neovim (kitty does, unless a kitty shortcut takes the key).
-map({ "n", "v" }, "<D-j>", "gj", { desc = "Down one screen line" })
-map({ "n", "v" }, "<D-k>", "gk", { desc = "Up one screen line" })
-map({ "n", "v" }, "<D-4>", "g$", { desc = "End of screen line" })
-map({ "n", "v" }, "<D-6>", "g^", { desc = "Start of screen line" })
-map({ "n", "v" }, "<D-0>", "g^", { desc = "Start of screen line" })
+-- Ctrl + j/k/4/6/0 move by screen (wrapped) lines, from the old MacVim Cmd maps.
+-- In normal mode Ctrl-j/k stay on window navigation (below).
+map("v", "<C-j>", "gj", { desc = "Down one screen line" })
+map("v", "<C-k>", "gk", { desc = "Up one screen line" })
+map({ "n", "v" }, "<C-4>", "g$", { desc = "End of screen line" })
+map({ "n", "v" }, "<C-6>", "g^", { desc = "Start of screen line" })
+map({ "n", "v" }, "<C-0>", "g^", { desc = "Start of screen line" })
 
 -- Tabs
 map({ "n", "v", "o" }, "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
