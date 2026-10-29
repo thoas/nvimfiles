@@ -36,6 +36,12 @@ Needs `git` and, for the language servers, `go` (gopls) and `npm` (pyright, ts_l
 
 **Python projects using mypy:** when a project's `.venv` has `pylsp-mypy` installed (e.g. Django with django-stubs), type errors come from mypy through the project's own `pylsp`, and pyright's type checking is turned off. Pyright still provides completion and navigation, and uses the project's `.venv` either way.
 
+### Jinja2 templates
+
+`.j2`, `.jinja` and `.jinja2` files, and `.html` files under a `templates/` folder, open as Jinja: HTML highlighting and indentation with Jinja tags highlighted on top (even inside attributes), and `gcc` comments with `{# #}`. Templates of a Django app (a `templates/` folder next to `apps.py` or `models.py`) stay Django templates.
+
+There's no Jinja language server: jinja-lsp flags every variable passed from Python as undefined.
+
 ## Keymaps
 
 Leader is `,`.
@@ -106,6 +112,9 @@ lua/config/keymaps.lua    general keymaps
 lua/config/lsp.lua        language servers, LSP keymaps, format on save
 lua/plugins.lua           plugin list and setup
 after/ftplugin/python.lua Python debugger shortcuts
+after/ftplugin/jinja.lua  Jinja comment style
+syntax/jinja.vim          HTML + Jinja highlighting for .html templates
+indent/jinja.vim          HTML indentation for .html templates
 colors/molokai.vim        color scheme
 nvim-pack-lock.json       pinned plugin versions
 ```
