@@ -126,6 +126,15 @@ Type the trigger alone on a line, then press `Tab`:
 | `ipdb` | `import ipdb; ipdb.set_trace()` |
 | `bp` | `breakpoint()` |
 
+### Go snippets
+
+Type the prefix, then `Tab` (or pick it from the completion menu); `Tab` then jumps between the fields.
+
+| Prefix | Inserts |
+|---|---|
+| `iferr` | `if err != nil {` `return err` `}` |
+| `func` | `func name(…) error {` … `}` |
+
 ## Layout
 
 ```
@@ -137,7 +146,9 @@ lua/plugins.lua           plugin list and setup, formatters
 after/ftplugin/python.lua Python debugger shortcuts
 after/ftplugin/jinja.lua  Jinja comment style, snippet Tab expansion
 lua/config/snippets.lua   Tab expansion of snippets/<filetype>.json
+after/ftplugin/go.lua     Go snippet Tab expansion
 snippets/jinja.json       Jinja snippets
+snippets/go.json          Go snippets
 syntax/jinja.vim          HTML + Jinja highlighting for .html templates
 indent/jinja.vim          HTML indentation for .html templates
 colors/molokai.vim        color scheme
