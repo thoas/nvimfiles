@@ -66,7 +66,8 @@ require("blink.cmp").setup({
     list = { selection = { preselect = false, auto_insert = false } },
   },
   signature = { enabled = true },
-  sources = { default = { "lsp", "path", "buffer" } },
+  -- "snippets" reads snippets/<filetype>.json from this config
+  sources = { default = { "lsp", "path", "snippets", "buffer" } },
   fuzzy = { implementation = "prefer_rust_with_warning" },
 })
 

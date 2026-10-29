@@ -46,6 +46,18 @@ prettier also formats JSON, CSS/SCSS, HTML, Markdown and YAML, and is taken from
 
 There's no Jinja language server: jinja-lsp flags every variable passed from Python as undefined.
 
+Snippets: type the prefix, then `Tab` (or pick it from the completion menu); `Tab` then jumps between the fields.
+
+| Prefix | Inserts |
+|---|---|
+| `if` | `{% if … %}` … `{% endif %}` |
+| `ifelse` | `{% if … %}` … `{% else %}` … `{% endif %}` |
+| `block` | `{% block … %}` … `{% endblock %}` |
+| `url` | `{{ url('…') }}` |
+| `static` | `{{ static('…') }}` |
+
+They live in `snippets/jinja.json` (VS Code snippet format); add a `snippets/<filetype>.json` and call `require("config.snippets").tab_expand("<filetype>")` from its ftplugin for other languages.
+
 ## Keymaps
 
 Leader is `,`.
@@ -117,7 +129,9 @@ lua/config/keymaps.lua    general keymaps
 lua/config/lsp.lua        language servers, LSP keymaps
 lua/plugins.lua           plugin list and setup, formatters
 after/ftplugin/python.lua Python debugger shortcuts
-after/ftplugin/jinja.lua  Jinja comment style
+after/ftplugin/jinja.lua  Jinja comment style, snippet Tab expansion
+lua/config/snippets.lua   Tab expansion of snippets/<filetype>.json
+snippets/jinja.json       Jinja snippets
 syntax/jinja.vim          HTML + Jinja highlighting for .html templates
 indent/jinja.vim          HTML indentation for .html templates
 colors/molokai.vim        color scheme
