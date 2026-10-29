@@ -38,6 +38,13 @@ vim.filetype.add({
   },
 })
 
+-- Same extra Go highlighting as vim-go in the old Vim config
+for _, name in ipairs({
+  "types", "fields", "functions", "methods", "structs", "operators", "build_constraints", "extra_types",
+}) do
+  vim.g["go_highlight_" .. name] = 1
+end
+
 -- Go uses tabs, JS/TS conventionally 2 spaces
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "go",

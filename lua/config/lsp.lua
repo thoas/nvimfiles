@@ -132,5 +132,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client.name == "ruff" then
       client.server_capabilities.hoverProvider = false
     end
+
+    -- Keep Vim syntax colors: molokai has no @lsp.* groups, so semantic tokens
+    -- recolor code (e.g. Go's `if`/`return` lose their Conditional/Statement pink)
+    vim.lsp.semantic_tokens.enable(false, { bufnr = buf })
   end,
 })
