@@ -52,7 +52,11 @@ Snippets: type the prefix, then `Tab` (or pick it from the completion menu); `Ta
 |---|---|
 | `if` | `{% if … %}` … `{% endif %}` |
 | `ifelse` | `{% if … %}` … `{% else %}` … `{% endif %}` |
+| `endif` | `{% endif %}` |
+| `for` | `{% for … in … %}` … `{% endfor %}` |
 | `block` | `{% block … %}` … `{% endblock %}` |
+| `extends` | `{% extends "…" %}` |
+| `include` | `{% include "…" %}` |
 | `url` | `{{ url('…') }}` |
 | `static` | `{{ static('…') }}` |
 

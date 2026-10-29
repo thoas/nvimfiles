@@ -9,6 +9,26 @@
     "body": ["{% if ${1:condition} %}", "\t$2", "{% else %}", "\t$0", "{% endif %}"],
     "description": "if / else block"
   },
+  "endif": {
+    "prefix": "endif",
+    "body": "{% endif %}",
+    "description": "Close an if block"
+  },
+  "for": {
+    "prefix": "for",
+    "body": ["{% for ${1:item} in ${2:items} %}", "\t$0", "{% endfor %}"],
+    "description": "for loop"
+  },
+  "extends": {
+    "prefix": "extends",
+    "body": "{% extends \"${1:base.html}\" %}",
+    "description": "Inherit from a template"
+  },
+  "include": {
+    "prefix": "include",
+    "body": "{% include \"${1:template.html}\" %}",
+    "description": "Include a template"
+  },
   "block": {
     "prefix": "block",
     "body": ["{% block ${1:name} %}", "\t$0", "{% endblock %}"],
