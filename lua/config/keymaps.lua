@@ -38,6 +38,11 @@ map("n", "<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<Up>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 map("n", "<Down>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 
+-- j/k move by screen line on wrapped text (gj/gk); with a count (5j) they still
+-- move by real lines
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = "Down (screen line)" })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = "Up (screen line)" })
+
 -- Ctrl + j/k/4/6/0 move by screen (wrapped) lines, from the old MacVim Cmd maps.
 -- In normal mode Ctrl-j/k stay on window navigation (below).
 map("v", "<C-j>", "gj", { desc = "Down one screen line" })
