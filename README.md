@@ -63,8 +63,6 @@ Leader is `,`.
 | `↑` / `↓` | Previous / next buffer |
 | `,tn` / `,tc` | New tab / close tab |
 | `j` / `k` | Down / up one screen line on wrapped text (`gj` / `gk`); with a count (`5j`), real lines |
-| `Ctrl-j` / `Ctrl-k` (visual) | Down / up one screen line |
-| `Ctrl-4` / `Ctrl-6` or `Ctrl-0` | End / start of screen line |
 | `,<Space>` or `Esc` | Clear search highlight |
 | `Tab` / `Shift-Tab` | Indent / dedent line (insert) or selection (visual) |
 

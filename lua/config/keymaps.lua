@@ -43,14 +43,6 @@ map("n", "<Down>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = "Down (screen line)" })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = "Up (screen line)" })
 
--- Ctrl + j/k/4/6/0 move by screen (wrapped) lines, from the old MacVim Cmd maps.
--- In normal mode Ctrl-j/k stay on window navigation (below).
-map("v", "<C-j>", "gj", { desc = "Down one screen line" })
-map("v", "<C-k>", "gk", { desc = "Up one screen line" })
-map({ "n", "v" }, "<C-4>", "g$", { desc = "End of screen line" })
-map({ "n", "v" }, "<C-6>", "g^", { desc = "Start of screen line" })
-map({ "n", "v" }, "<C-0>", "g^", { desc = "Start of screen line" })
-
 -- Tabs
 map({ "n", "v", "o" }, "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
 map({ "n", "v", "o" }, "<leader>tc", "<cmd>tabclose<CR>", { desc = "Close tab" })
