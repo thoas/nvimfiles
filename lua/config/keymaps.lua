@@ -6,6 +6,8 @@ map("n", "<leader>w", "<cmd>write<CR>", { desc = "Save" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd>write<CR>", { desc = "Save" })
 -- Close the window, like :q (the tab goes too if only the tree is left)
 map({ "n", "v" }, "<C-q>", "<cmd>quit<CR>", { desc = "Close file" })
+-- Reload the file from disk; refuses (E37) rather than drop unsaved changes
+map("n", "<leader>r", "<cmd>edit<CR>", { desc = "Reload file" })
 -- Whole buffer in normal mode, the selected lines in visual mode
 map({ "n", "v" }, "<leader>f", function() require("conform").format({ async = true }) end, { desc = "Format" })
 

@@ -77,6 +77,7 @@ Leader is `,`.
 | `,f` | Format the file (normal) or selected lines (visual) |
 | `Ctrl-w` | Close buffer |
 | `Ctrl-q` | Close the file's window (`:q`) |
+| `,r` | Reload the file from disk (refuses if it has unsaved changes) |
 | `Ctrl-h/j/k/l` | Move between windows |
 | `←` / `→` | Previous / next tab |
 | `↑` / `↓` | Previous / next buffer |
@@ -103,7 +104,7 @@ When closing a window (`:q`, `Ctrl-q`, `Ctrl-w`) leaves only the tree in a tab, 
 | `gd` / `gD` / `gy` | Definition / declaration / type definition |
 | `grr` / `gri` | References / implementation |
 | `K` | Hover docs |
-| `,rn` | Rename |
+| `grn` | Rename |
 | `,ca` | Code action |
 | `[d` / `]d` | Previous / next diagnostic |
 | `,d` / `,q` | Line diagnostic / all diagnostics to location list |

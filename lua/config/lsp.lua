@@ -129,7 +129,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gd", vim.lsp.buf.definition, "Go to definition")
     map("gD", vim.lsp.buf.declaration, "Go to declaration")
     map("gy", vim.lsp.buf.type_definition, "Go to type definition")
-    map("<leader>rn", vim.lsp.buf.rename, "Rename")
     map("<leader>ca", vim.lsp.buf.code_action, "Code action")
 
     -- Pyright handles hover for Python; avoid duplicate popups from ruff
