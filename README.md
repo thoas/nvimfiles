@@ -158,6 +158,7 @@ lua/plugins.lua           plugin list and setup, formatters
 after/ftplugin/python.lua Python debugger shortcuts
 after/ftplugin/jinja.lua  Jinja comment style, snippet Tab expansion
 lua/config/snippets.lua   Tab expansion of snippets/<filetype>.json
+lua/config/tabline.lua    tab line in the molokai/lualine colors
 after/ftplugin/go.lua     Go snippet Tab expansion
 snippets/jinja.json       Jinja snippets
 snippets/go.json          Go snippets
