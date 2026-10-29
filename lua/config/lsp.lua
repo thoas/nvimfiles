@@ -9,6 +9,9 @@ vim.lsp.config("gopls", {
     gopls = {
       staticcheck = true,
       usePlaceholders = true,
+      -- Default 100ms cuts off unimported-package members (`slices.`) in big
+      -- modules, leaving a partial menu until the next keystroke
+      completionBudget = "1s",
       analyses = { unusedparams = true, shadow = true },
     },
   },
