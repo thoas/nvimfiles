@@ -97,7 +97,7 @@ require("mason-lspconfig").setup({
 -- Formatters used by conform.nvim that aren't language servers
 local registry = require("mason-registry")
 registry.refresh(function()
-  for _, name in ipairs({ "prettier" }) do
+  for _, name in ipairs({ "prettier", "goimports" }) do
     local pkg = registry.get_package(name)
     if not pkg:is_installed() then pkg:install() end
   end

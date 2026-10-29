@@ -77,8 +77,10 @@ local prettier = { "prettier" }
 local format_on_save = { go = true, python = true }
 require("conform").setup({
   formatters_by_ft = {
-    python = { "ruff_format" },
-    go = { "gofmt" },
+    -- Sort imports (ruff's isort rules), then format
+    python = { "ruff_organize_imports", "ruff_format" },
+    -- gofmt formatting plus adding missing / removing unused imports
+    go = { "goimports" },
     javascript = prettier,
     javascriptreact = prettier,
     typescript = prettier,

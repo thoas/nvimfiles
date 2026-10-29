@@ -11,9 +11,9 @@ git clone git@github.com:thoas/nvimfiles.git ~/.config/nvim
 nvim
 ```
 
-On first start, `vim.pack` installs the plugins at the versions pinned in `nvim-pack-lock.json`, and Mason installs the language servers and prettier.
+On first start, `vim.pack` installs the plugins at the versions pinned in `nvim-pack-lock.json`, and Mason installs the language servers, prettier and goimports.
 
-Needs `git`, `go` (gopls, gofmt) and `npm` (pyright, ts_ls, prettier).
+Needs `git`, `go` (gopls, goimports) and `npm` (pyright, ts_ls, prettier).
 
 ## What's inside
 
@@ -32,9 +32,11 @@ Needs `git`, `go` (gopls, gofmt) and `npm` (pyright, ts_ls, prettier).
 
 | Language | Servers | Formatter (`,f`) | Format on save |
 |---|---|---|---|
-| Go | gopls (staticcheck) | gofmt | yes |
-| Python | pyright, ruff | ruff format | yes |
+| Go | gopls (staticcheck) | goimports | yes |
+| Python | pyright, ruff | ruff (sort imports, then format) | yes |
 | JavaScript / TypeScript | ts_ls | prettier | no |
+
+**Auto-imports:** accepting a completion for something not imported yet adds the import (gopls, pyright, ts_ls; for JS, the project needs a `jsconfig.json` or `tsconfig.json`). In Go, goimports also adds missing and removes unused imports on save; in Python, imports are sorted on save.
 
 prettier also formats JSON, CSS/SCSS, HTML, Markdown and YAML, and is taken from the project's `node_modules` when it has one. Other filetypes fall back to their language server's formatter.
 
