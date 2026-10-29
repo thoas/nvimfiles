@@ -5,9 +5,13 @@
 vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
 
 vim.lsp.config("gopls", {
+  -- All nvim instances share one gopls daemon (and its cache) instead of each
+  -- loading the module on its own
+  cmd = { "gopls", "-remote=auto" },
   settings = {
     gopls = {
-      staticcheck = true,
+      -- staticcheck kept gopls at full CPU for minutes on large modules (ulule/api)
+      staticcheck = false,
       usePlaceholders = true,
       -- Default 100ms cuts off unimported-package members (`slices.`) in big
       -- modules, leaving a partial menu until the next keystroke

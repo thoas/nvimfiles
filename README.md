@@ -32,7 +32,7 @@ Needs `git`, `go` (gopls, goimports) and `npm` (pyright, ts_ls, prettier).
 
 | Language | Servers | Formatter (`,f`) | Format on save |
 |---|---|---|---|
-| Go | gopls (staticcheck) | goimports | yes |
+| Go | gopls (one shared instance for all nvims) | goimports | yes |
 | Python | pyright, ruff | ruff (sort imports, then format) | yes |
 | JavaScript / TypeScript | ts_ls | prettier | no |
 
