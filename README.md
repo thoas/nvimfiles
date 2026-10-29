@@ -15,6 +15,12 @@ On first start, `vim.pack` installs the plugins at the versions pinned in `nvim-
 
 Needs `git`, `go` (gopls, goimports) and `npm` (pyright, ts_ls, prettier).
 
+Optional, for the Go `iferr` snippet:
+
+```bash
+go install github.com/koron/iferr@latest
+```
+
 ## What's inside
 
 | | |
@@ -136,8 +142,10 @@ Type the prefix, then `Tab` (or pick it from the completion menu); `Tab` then ju
 
 | Prefix | Inserts |
 |---|---|
-| `iferr` | `if err != nil {` `return err` `}` |
+| `iferr` | `if err != nil {` `return …, err` `}`, with zero values matching the function's return types |
 | `func` | `func name(…) error {` … `}` |
+
+`iferr` uses [koron/iferr](https://github.com/koron/iferr) (found on `PATH` or in `$(go env GOPATH)/bin`), so in `func f() (*User, string, error)` it inserts `return nil, "", err`; `err` is a field to type over (e.g. with `fmt.Errorf`). Without the tool, or when the file doesn't parse yet, it inserts `return err`.
 
 ## Layout
 

@@ -22,8 +22,11 @@ local function load(ft)
   return cache[ft]
 end
 
--- Buffer-local <Tab>: expand the prefix before the cursor, else fall back to <Plug>(indent)
-function M.tab_expand(ft)
+-- Buffer-local <Tab>: expand the prefix before the cursor, else fall back to <Plug>(indent).
+-- `dynamic` maps a prefix to a function returning the body for the current cursor
+-- position (after the prefix is removed), or nil to use the JSON snippet.
+function M.tab_expand(ft, dynamic)
+  dynamic = dynamic or {}
   vim.keymap.set("i", "<Tab>", function()
     local row, col = unpack(vim.api.nvim_win_get_cursor(0))
     local before = vim.api.nvim_get_current_line():sub(1, col)
@@ -33,7 +36,7 @@ function M.tab_expand(ft)
     vim.schedule(function()
       vim.api.nvim_buf_set_text(0, row - 1, col - #word, row - 1, col, { "" })
       vim.api.nvim_win_set_cursor(0, { row, col - #word })
-      vim.snippet.expand(body)
+      vim.snippet.expand(dynamic[word] and dynamic[word]() or body)
     end)
     return ""
   end, { buffer = true, expr = true, remap = true, desc = "Expand snippet" })
