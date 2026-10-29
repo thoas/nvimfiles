@@ -4,6 +4,8 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", "<leader><Space>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 map("n", "<leader>w", "<cmd>write<CR>", { desc = "Save" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd>write<CR>", { desc = "Save" })
+-- Whole buffer in normal mode, the selected lines in visual mode
+map({ "n", "v" }, "<leader>f", function() require("conform").format({ async = true }) end, { desc = "Format" })
 
 -- Insert mode: <Tab>/<S-Tab> indent/dedent the line, unless a snippet
 -- (e.g. completed function arguments) is active, in which case they jump.

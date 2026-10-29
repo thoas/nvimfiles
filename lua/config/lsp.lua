@@ -7,7 +7,6 @@ vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities()
 vim.lsp.config("gopls", {
   settings = {
     gopls = {
-      gofumpt = true,
       staticcheck = true,
       usePlaceholders = true,
       analyses = { unusedparams = true, shadow = true },
@@ -95,13 +94,20 @@ require("mason-lspconfig").setup({
   },
 })
 
+-- Formatters used by conform.nvim that aren't language servers
+local registry = require("mason-registry")
+registry.refresh(function()
+  for _, name in ipairs({ "prettier" }) do
+    local pkg = registry.get_package(name)
+    if not pkg:is_installed() then pkg:install() end
+  end
+end)
+
 vim.diagnostic.config({
   virtual_text = true,
   severity_sort = true,
   float = { border = "rounded" },
 })
-
-local format_on_save = { go = true, python = true }
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -118,23 +124,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gy", vim.lsp.buf.type_definition, "Go to type definition")
     map("<leader>rn", vim.lsp.buf.rename, "Rename")
     map("<leader>ca", vim.lsp.buf.code_action, "Code action")
-    map("<leader>cf", function() vim.lsp.buf.format({ async = true }) end, "Format")
 
     -- Pyright handles hover for Python; avoid duplicate popups from ruff
     if client.name == "ruff" then
       client.server_capabilities.hoverProvider = false
-    end
-
-    if format_on_save[vim.bo[buf].filetype] and client:supports_method("textDocument/formatting") then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = buf,
-        group = vim.api.nvim_create_augroup("lsp_format_" .. buf .. "_" .. client.id, { clear = true }),
-        callback = function()
-          -- Go: format with gopls; Python: format with ruff only
-          local name = vim.bo[buf].filetype == "python" and "ruff" or client.name
-          vim.lsp.buf.format({ bufnr = buf, name = name, timeout_ms = 2000 })
-        end,
-      })
     end
   end,
 })

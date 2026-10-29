@@ -11,9 +11,9 @@ git clone git@github.com:thoas/nvimfiles.git ~/.config/nvim
 nvim
 ```
 
-On first start, `vim.pack` installs the plugins at the versions pinned in `nvim-pack-lock.json`, and Mason installs the language servers.
+On first start, `vim.pack` installs the plugins at the versions pinned in `nvim-pack-lock.json`, and Mason installs the language servers and prettier.
 
-Needs `git` and, for the language servers, `go` (gopls) and `npm` (pyright, ts_ls).
+Needs `git`, `go` (gopls, gofmt) and `npm` (pyright, ts_ls, prettier).
 
 ## What's inside
 
@@ -23,17 +23,20 @@ Needs `git` and, for the language servers, `go` (gopls) and `npm` (pyright, ts_l
 | Fuzzy finder | [Telescope](https://github.com/nvim-telescope/telescope.nvim) |
 | Completion | [blink.cmp](https://github.com/saghen/blink.cmp) |
 | Auto-close brackets and quotes | [nvim-autopairs](https://github.com/windwp/nvim-autopairs) |
+| Formatting | [conform.nvim](https://github.com/stevearc/conform.nvim) |
 | Language servers | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), installed by [Mason](https://github.com/mason-org/mason.nvim) |
 | Status line / git | [lualine](https://github.com/nvim-lualine/lualine.nvim), [gitsigns](https://github.com/lewis6991/gitsigns.nvim) |
 | Color scheme | molokai (`colors/molokai.vim`) |
 
 ### Language servers
 
-| Language | Servers | Format on save |
-|---|---|---|
-| Go | gopls (gofumpt, staticcheck) | yes |
-| Python | pyright, ruff | yes (ruff) |
-| JavaScript / TypeScript | ts_ls | no |
+| Language | Servers | Formatter (`,f`) | Format on save |
+|---|---|---|---|
+| Go | gopls (staticcheck) | gofmt | yes |
+| Python | pyright, ruff | ruff format | yes |
+| JavaScript / TypeScript | ts_ls | prettier | no |
+
+prettier also formats JSON, CSS/SCSS, HTML, Markdown and YAML, and is taken from the project's `node_modules` when it has one. Other filetypes fall back to their language server's formatter.
 
 **Python projects using mypy:** when a project's `.venv` has `pylsp-mypy` installed (e.g. Django with django-stubs), type errors come from mypy through the project's own `pylsp`, and pyright's type checking is turned off. Pyright still provides completion and navigation, and uses the project's `.venv` either way.
 
@@ -53,6 +56,7 @@ Leader is `,`.
 |---|---|
 | `Ctrl-s` | Save (normal, insert, visual) |
 | `,w` | Save |
+| `,f` | Format the file (normal) or selected lines (visual) |
 | `Ctrl-w` | Close buffer |
 | `Ctrl-h/j/k/l` | Move between windows |
 | `←` / `→` | Previous / next tab |
@@ -79,7 +83,6 @@ Leader is `,`.
 | `K` | Hover docs |
 | `,rn` | Rename |
 | `,ca` | Code action |
-| `,cf` | Format |
 | `[d` / `]d` | Previous / next diagnostic |
 | `,d` / `,q` | Line diagnostic / all diagnostics to location list |
 
@@ -110,8 +113,8 @@ Type the trigger alone on a line, then press `Tab`:
 init.lua                  leader, loads everything below
 lua/config/options.lua    editor options, per-language indentation
 lua/config/keymaps.lua    general keymaps
-lua/config/lsp.lua        language servers, LSP keymaps, format on save
-lua/plugins.lua           plugin list and setup
+lua/config/lsp.lua        language servers, LSP keymaps
+lua/plugins.lua           plugin list and setup, formatters
 after/ftplugin/python.lua Python debugger shortcuts
 after/ftplugin/jinja.lua  Jinja comment style
 syntax/jinja.vim          HTML + Jinja highlighting for .html templates

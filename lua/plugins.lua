@@ -11,6 +11,7 @@ vim.pack.add({
   "https://github.com/mason-org/mason.nvim",
   "https://github.com/mason-org/mason-lspconfig.nvim",
   "https://github.com/windwp/nvim-autopairs",
+  "https://github.com/stevearc/conform.nvim",
   -- Pinned to release tags so the prebuilt fuzzy matcher can be downloaded
   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 }, { confirm = false })
@@ -67,6 +68,33 @@ require("blink.cmp").setup({
   signature = { enabled = true },
   sources = { default = { "lsp", "path", "buffer" } },
   fuzzy = { implementation = "prefer_rust_with_warning" },
+})
+
+-- Formatters (<leader>f, and on save for Go and Python). Prettier comes from the
+-- project's node_modules when it has one, otherwise from Mason.
+local prettier = { "prettier" }
+local format_on_save = { go = true, python = true }
+require("conform").setup({
+  formatters_by_ft = {
+    python = { "ruff_format" },
+    go = { "gofmt" },
+    javascript = prettier,
+    javascriptreact = prettier,
+    typescript = prettier,
+    typescriptreact = prettier,
+    json = prettier,
+    jsonc = prettier,
+    css = prettier,
+    scss = prettier,
+    html = prettier,
+    markdown = prettier,
+    yaml = prettier,
+  },
+  -- Other filetypes fall back to the language server's formatter
+  default_format_opts = { lsp_format = "fallback" },
+  format_on_save = function(buf)
+    if format_on_save[vim.bo[buf].filetype] then return { timeout_ms = 2000 } end
+  end,
 })
 
 require("telescope").setup({})
