@@ -27,6 +27,9 @@ end, { expr = true, desc = "Dedent line" })
 -- Visual mode: indent/dedent the selection and keep it selected
 map("x", "<Tab>", ">gv", { desc = "Indent selection" })
 map("x", "<S-Tab>", "<gv", { desc = "Dedent selection" })
+-- Pasting over a selection keeps what you copied (Vim's p would copy the replaced
+-- text instead); built-in P does exactly that
+map("x", "p", "P", { desc = "Paste without copying the replaced text" })
 -- Overrides the <C-w> window prefix; window moves use <C-h/j/k/l> below
 map("n", "<C-w>", "<cmd>bdelete<CR>", { desc = "Close buffer" })
 

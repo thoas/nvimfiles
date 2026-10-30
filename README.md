@@ -91,6 +91,7 @@ Leader is `,`.
 | `j` / `k` | Down / up one screen line on wrapped text (`gj` / `gk`); with a count (`5j`), real lines |
 | `,<Space>` or `Esc` | Clear search highlight |
 | `Tab` / `Shift-Tab` | Indent / dedent line (insert) or selection (visual) |
+| `p` (visual) | Paste over the selection, keeping what you copied (the replaced text isn't copied) |
 
 Files reopen at the last cursor position, copied text flashes briefly, and files changed outside nvim (e.g. by `git checkout`) are reloaded when the cursor rests, unless you have unsaved changes there (then nvim asks).
 
