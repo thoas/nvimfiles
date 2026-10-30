@@ -13,7 +13,7 @@ nvim
 
 On first start, `vim.pack` installs the plugins at the versions pinned in `nvim-pack-lock.json`, and Mason installs the language servers, prettier and goimports.
 
-Needs `git`, `go` (gopls, goimports) and `npm` (pyright, ts_ls, prettier).
+Needs `git`, `go` (gopls, goimports), `npm` (pyright, ts_ls, prettier) and [ripgrep](https://github.com/BurntSushi/ripgrep) for Telescope's grep (`brew install ripgrep`).
 
 Optional, for the Go `iferr` snippet:
 
@@ -92,6 +92,8 @@ Leader is `,`.
 | `,<Space>` or `Esc` | Clear search highlight |
 | `Tab` / `Shift-Tab` | Indent / dedent line (insert) or selection (visual) |
 
+Files reopen at the last cursor position, copied text flashes briefly, and files changed outside nvim (e.g. by `git checkout`) are reloaded when the cursor rests, unless you have unsaved changes there (then nvim asks).
+
 ### File tree and search
 
 | Keys | Action |
@@ -99,7 +101,12 @@ Leader is `,`.
 | `F9` or `,e` | Toggle the tree |
 | `,E` | Reveal the current file in the tree |
 | `s` / `i` / `t` (in tree) | Open in vertical split / horizontal split / new tab |
-| `,p` / `,g` / `,b` | Find files / live grep / buffers |
+| `Cmd-p` or `,p` | Find files |
+| `,g` / `,b` | Live grep / buffers |
+| `,*` | Grep the word under the cursor (or the selection) |
+| `,s` / `,S` | Symbols in the file / in the project |
+| `,D` | Diagnostics of the whole project |
+| `,l` | Reopen the last search |
 
 When closing a window (`:q`, `Ctrl-q`, `Ctrl-w`) leaves only the tree in a tab, the tab closes too, or nvim quits if it was the last tab.
 
@@ -108,7 +115,7 @@ When closing a window (`:q`, `Ctrl-q`, `Ctrl-w`) leaves only the tree in a tab, 
 | Keys | Action |
 |---|---|
 | `gd` / `gD` / `gy` | Definition / declaration / type definition |
-| `grr` / `gri` | References / implementation |
+| `grr` / `gri` | References / implementations (in Telescope) |
 | `K` | Hover docs |
 | `grn` | Rename |
 | `,ca` | Code action |
@@ -153,6 +160,7 @@ Type the prefix, then `Tab` (or pick it from the completion menu); `Tab` then ju
 init.lua                  leader, loads everything below
 lua/config/options.lua    editor options, per-language indentation
 lua/config/keymaps.lua    general keymaps
+lua/config/autocmds.lua   last position, reload changed files, yank highlight
 lua/config/lsp.lua        language servers, LSP keymaps
 lua/plugins.lua           plugin list and setup, formatters
 after/ftplugin/python.lua Python debugger shortcuts

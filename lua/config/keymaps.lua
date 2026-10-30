@@ -60,6 +60,13 @@ map("n", "<leader>E", "<cmd>NvimTreeFindFile<CR>", { desc = "Reveal file in tree
 map("n", "<leader>p", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
 map("n", "<leader>g", "<cmd>Telescope live_grep<CR>", { desc = "Grep" })
 map("n", "<leader>b", "<cmd>Telescope buffers<CR>", { desc = "Buffers" })
+-- Cmd-p like other editors (needs the terminal to pass Cmd through, as kitty does)
+map({ "n", "i", "v" }, "<D-p>", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
+map({ "n", "v" }, "<leader>*", "<cmd>Telescope grep_string<CR>", { desc = "Grep word / selection" })
+map("n", "<leader>s", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Symbols in file" })
+map("n", "<leader>S", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Symbols in project" })
+map("n", "<leader>D", "<cmd>Telescope diagnostics<CR>", { desc = "Project diagnostics" })
+map("n", "<leader>l", "<cmd>Telescope resume<CR>", { desc = "Reopen last search" })
 
 -- Diagnostics
 map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Line diagnostics" })

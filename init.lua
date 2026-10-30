@@ -8,6 +8,7 @@ vim.g.loaded_netrwPlugin = 1
 
 require("config.options")
 require("config.keymaps")
+require("config.autocmds")
 require("plugins")
 require("config.lsp")
 require("config.tabline") -- after the colorscheme, which it restyles

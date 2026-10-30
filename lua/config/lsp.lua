@@ -130,6 +130,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gD", vim.lsp.buf.declaration, "Go to declaration")
     map("gy", vim.lsp.buf.type_definition, "Go to type definition")
     map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+    -- References / implementations in Telescope (with preview) instead of the quickfix list
+    map("grr", "<cmd>Telescope lsp_references<CR>", "References")
+    map("gri", "<cmd>Telescope lsp_implementations<CR>", "Implementations")
 
     -- Pyright handles hover for Python; avoid duplicate popups from ruff
     if client.name == "ruff" then
