@@ -1,6 +1,6 @@
 # nvimfiles
 
-My Neovim config: a file tree, fuzzy finding, completion and LSP for Go, Python and JavaScript/TypeScript, with the molokai color scheme.
+My Neovim config: a file tree, fuzzy finding, completion and LSP for Go, Python, Rust and JavaScript/TypeScript, with the molokai color scheme.
 
 Requires **Neovim 0.12+**. Plugins are managed by the built-in `vim.pack`, so there's no plugin manager to bootstrap.
 
@@ -13,7 +13,7 @@ nvim
 
 On first start, `vim.pack` installs the plugins at the versions pinned in `nvim-pack-lock.json`, and Mason installs the language servers, prettier and goimports.
 
-Needs `git`, `go` (gopls, goimports), `npm` (pyright, ts_ls, prettier) and [ripgrep](https://github.com/BurntSushi/ripgrep) for Telescope's grep (`brew install ripgrep`).
+Needs `git`, `go` (gopls, goimports), `npm` (pyright, ts_ls, prettier), a Rust toolchain for Rust (`cargo`, `rustfmt`, `clippy`; rust-analyzer comes from Mason) and [ripgrep](https://github.com/BurntSushi/ripgrep) for Telescope's grep (`brew install ripgrep`).
 
 Optional, for the Go `iferr` snippet:
 
@@ -40,9 +40,10 @@ go install github.com/koron/iferr@latest
 |---|---|---|---|
 | Go | gopls (one shared instance for all nvims) | goimports | yes |
 | Python | pyright, ruff | ruff (sort imports, then format) | yes |
+| Rust | rust-analyzer (clippy on save) | rustfmt | yes |
 | JavaScript / TypeScript | ts_ls | prettier | no |
 
-**Auto-imports:** accepting a completion for something not imported yet adds the import (gopls, pyright, ts_ls; for JS, the project needs a `jsconfig.json` or `tsconfig.json`). In Go, goimports also adds missing and removes unused imports on save; in Python, imports are sorted on save.
+**Auto-imports:** accepting a completion for something not imported yet adds the import (gopls, pyright, rust-analyzer, ts_ls; for JS, the project needs a `jsconfig.json` or `tsconfig.json`). In Go, goimports also adds missing and removes unused imports on save; in Python, imports are sorted on save.
 
 prettier also formats JSON, CSS/SCSS, HTML, Markdown and YAML, and is taken from the project's `node_modules` when it has one. Other filetypes fall back to their language server's formatter.
 

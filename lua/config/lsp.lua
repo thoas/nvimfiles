@@ -88,6 +88,18 @@ vim.lsp.config("pylsp", {
     },
   },
 })
+
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      -- Clippy lints on save instead of plain `cargo check`
+      check = { command = "clippy" },
+      -- Fill in arguments when completing a function call
+      completion = { callable = { snippets = "fill_arguments" } },
+    },
+  },
+})
+
 -- Not managed by mason: pylsp comes from each project's own venv
 vim.lsp.enable("pylsp")
 
@@ -98,6 +110,7 @@ require("mason-lspconfig").setup({
     "pyright", -- Python types/navigation
     "ruff",    -- Python lint + format
     "ts_ls",   -- JavaScript / TypeScript
+    "rust_analyzer", -- Rust
   },
 })
 

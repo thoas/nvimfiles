@@ -86,16 +86,18 @@ require("blink.cmp").setup({
   fuzzy = { implementation = "prefer_rust_with_warning" },
 })
 
--- Formatters (<leader>f, and on save for Go and Python). Prettier comes from the
+-- Formatters (<leader>f, and on save for Go, Python and Rust). Prettier comes from the
 -- project's node_modules when it has one, otherwise from Mason.
 local prettier = { "prettier" }
-local format_on_save = { go = true, python = true }
+local format_on_save = { go = true, python = true, rust = true }
 require("conform").setup({
   formatters_by_ft = {
     -- Sort imports (ruff's isort rules), then format
     python = { "ruff_organize_imports", "ruff_format" },
     -- gofmt formatting plus adding missing / removing unused imports
     go = { "goimports" },
+    -- From the Rust toolchain; picks up the crate's edition and rustfmt.toml
+    rust = { "rustfmt" },
     javascript = prettier,
     javascriptreact = prettier,
     typescript = prettier,
